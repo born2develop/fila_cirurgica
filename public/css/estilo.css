@@ -1,0 +1,225 @@
+html, body {
+    background-color: #fff;
+    color: #636b6f;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+    height: 100vh;
+    margin: 0;
+}
+
+.phone-input{
+	margin-bottom:8px;
+}	
+
+input[type="text"].disabled {
+	background-color: #EEEEEE;
+}
+input[type="date"].disabled {
+	background-color: #EEEEEE;
+}
+
+
+.font{
+    background-color: #fff;
+    color: #636b6f;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+    margin: 0;
+}
+
+
+img.logofila {
+    background-color: transparent;
+	display: block;
+    width: 55%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -1%;
+}
+
+.navbar .navbar-nav {
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.links > a 
+{
+   	color: #636b6f;
+    padding: 0 25px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.navbar .navbar-collapse {
+  text-align: center;
+}
+
+div.rp3 {
+	padding-top: 3%;
+}
+
+div.rp5 {
+	padding-top: 5%;
+}
+
+div.rp1 {
+	padding-top: 2%;
+}
+
+.rad-pad-l {
+	margin-left: -2;
+}
+
+.offset-top {
+	padding-top: -2%;
+}
+
+input.inp-txt-big {
+	width: 75%;
+}
+
+input.inp-txt-small {
+	width: 80%;
+}
+
+select.prontuario {
+	width: 60%;
+}
+
+.panel-body{
+	outline: #99caff solid 1px;
+}
+
+.panel-default {
+    outline: #99caff solid 0px;
+
+}
+
+.panel-footer{
+	box-shadow: 10px 10px 5px #888888;
+}
+
+.br{
+	display: block;
+}
+
+input[type=date] {
+	width: 50%;
+	padding: 3% 5%; 
+	line-height: 9%;
+	background-color: #fff;
+	border: 1px solid #aaa;
+	border-radius: 4px;
+}
+
+input[type=text] {
+	font-size: 120%;
+	background-color: #fff;
+  	border: 1px solid #aaa;
+  	border-radius: 4px;
+}
+
+
+.pad-top{
+	margin-top: 120px;
+}
+
+select {
+	width: 60%;
+	background-color: #e6f2ff;
+}
+
+.full-width{
+	width: 90%;
+}
+
+textarea {
+	width:97%;
+	background-color: #fff;
+  	border: 1px solid #aaa;
+  	border-radius: 4px;
+}
+
+input.inp-txt-small{
+	width:50%;
+}
+
+input:focus, select:focus, textarea:focus {
+	background-color: lightblue;
+	border: solid black 1px;
+	outline: 0;
+}
+
+.bpad3 {
+	padding-bottom: 10%;
+}
+
+div.tipo_cirurgia {
+	padding-left: 15%;
+	padding-top: 2%;
+}
+
+label.label_fonte {
+	font-size:130%;
+}
+
+label.label_sm_fnt {
+	font-size:100%;
+}
+
+ul {
+	padding-left: 8%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.item {
+	font-family: "Times New Roman", Times, serif;
+	font-style: normal;
+	font-size:120%;
+	color: #364273;
+	text-align: center;
+	margin-top: -2%;
+}
+
+.sem-br {
+    white-space: nowrap;
+}
+
+.aviso_aghu{
+	font-style: normal;
+	font-size:75%;
+	color: red;
+	padding-left: 1%;
+}
+
+span.h4{
+	font-size:100%;
+}
+
+div.principal{
+	outline: #99caff solid 1px;
+	margin-bottom: 0%;
+    padding-bottom: 2%;
+    padding-top: 2%;
+    text-align: center;
+    box-shadow: 1px 1px 1px 2px;
+    color: #364177;
+}
+
+input.pedidoPrincipal{
+	background-color:#e6f2ff;
+    border: none;
+    outline:none;
+    transition:height 1s;
+    -webkit-transition:height 1s;
+    font-size: 150%;
+    color: #364177;
+    text-align: center;
+}
