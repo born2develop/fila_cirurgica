@@ -5,6 +5,7 @@ html, body {
     font-weight: 100;
     height: 100vh;
     margin: 0;
+
 }
 
 .phone-input{
@@ -93,6 +94,7 @@ select.prontuario {
 
 .panel-body{
 	outline: #99caff solid 1px;
+	max-width: 100%;
 }
 
 .panel-default {
@@ -109,7 +111,6 @@ select.prontuario {
 }
 
 input[type=date] {
-	width: 50%;
 	padding: 3% 5%; 
 	line-height: 9%;
 	background-color: #fff;
@@ -160,7 +161,7 @@ input:focus, select:focus, textarea:focus {
 }
 
 div.tipo_cirurgia {
-	padding-left: 15%;
+	padding-left: 5%;
 	padding-top: 2%;
 }
 
@@ -203,23 +204,3 @@ span.h4{
 	font-size:100%;
 }
 
-div.principal{
-	outline: #99caff solid 1px;
-	margin-bottom: 0%;
-    padding-bottom: 2%;
-    padding-top: 2%;
-    text-align: center;
-    box-shadow: 1px 1px 1px 2px;
-    color: #364177;
-}
-
-input.pedidoPrincipal{
-	background-color:#e6f2ff;
-    border: none;
-    outline:none;
-    transition:height 1s;
-    -webkit-transition:height 1s;
-    font-size: 150%;
-    color: #364177;
-    text-align: center;
-}

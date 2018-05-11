@@ -15,81 +15,69 @@
     <!-- Styles -->
     
     <link rel="stylesheet" href="{{ URL::to('/') }}/css/estilo_app.css"/>
-
+    <link rel="stylesheet" href="{{ URL::to('/') }}/bootstrap-3.3.7-dist/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ URL::to('/') }}/bootstrap-3.3.7-dist/bootstrap-theme.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="{{ URL::to('/') }}/jquery-ui-1.12.1/external/jquery/jquery.js"></script>
+    <script src="{{ URL::to('/') }}/bootstrap-3.3.7-dist/bootstrap.min.js"></script>
+    <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    
+    <!-- <script src="{{ URL::to('/') }}/jquery-ui-1.12.1/external/jquery/jquery.js"></script> -->
     <script src="{{ URL::to('/') }}/jquery-ui-1.12.1/jquery-ui.min.js"></script>
     <script src="{{ URL::to('/') }}/js/datapicker.js"></script>
 
     @yield('styles')
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
-
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        <!-- {{ config('app.name', 'FilaCirurgica') }} -->
+    <div id="app" style="overflow: hidden;">
+        <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0px; display: inline-block;">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6" style=""> 
+                    <a href="{{ url('/home') }}" class="">
+                        <img src="{{ URL::to('/') }}/img/logo_hub.jpg" class="align-top logo">
                     </a>
                 </div>
 
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <a href="{{ url('/home') }}" style="text-align: center;">
-                    <img src="{{ URL::to('/') }}/img/logo_hub.jpg" class="nav navbar-nav navbar-center logo">
-                    </a>
+                <div class="col-xs-6 col-sm-6" style="padding-top: 1%;">
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
 
                         @else
-                            <li>
-                                    <h4 style="padding-top: 5%; color: #364177;"><b>{{ Auth::user()->name }} </b>
-                                    </h4>
-                                    <a href="{{ route('logout') }}" class="a" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    <img src="{{ url::to('/') }}/img/icon_sair.png" class='icon'>
-                                    </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
+                            <li style="text-align: center;">
+                                <h5 style="color: #364177;"><b>{{ Auth::user()->name }} </b>
+                                </h5>
+                                <a href="{{ route('logout') }}" class="a" onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                <img src="{{ url::to('/') }}/img/icon_sair.png" class='icon'>
+                                </a>
+                                
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
                             </li>
                         @endif
                     </ul>
                 </div>
             </div>
         </nav>
-        <div class="modal fade" id="loadModal" role="dialog">
-            <div class="modal-dialog modal-sm">
+
+        <div class="modal" id="loadModal" role="dialog">
+            <div class="modal-dialog modal-sm modal-dialog-centered">
 
               <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-body">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <div class="loader" id="loader"></div>
                     </div>
                 </div>
             </div>
         </div>
+        <fieldset id='block_loading_page'>
         @yield('content')
+        </fieldset>
     </div>
     @yield('script')
     <!-- Scripts 

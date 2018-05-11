@@ -35,18 +35,30 @@ Route::group(['prefix'=>'pedidos'], function() {
 	Route::get('{id}/destroy', 'PedidoController@destroy')->name('pedidos.destroy');
 	Route::get('{id}', 'PedidoController@edit')->name('pedidos.edit');
 	Route::get('{id}/update', 'PedidoController@update')->name('pedidos.update');
-	Route::post('setId', 'PedidoController@setId')->name('setId');
+	Route::match(['get', 'post'], '/', 'PedidoController@pesquisarPedidos')->name('pedidos');
+	//Route::post('config/setId', 'PedidoController@setId')->name('setId');
+	Route::get('paciente/{cod_paciente}', 'PedidoController@getPedidosByCodPaciente')->name('getCodByPaciente');
+});
+
+Route::group(['prefix'=>'relatorio'], function() {
+	Route::get('/', 'RelatorioController@filtro')->name('relatorios.index');
+	Route::get('excel', 'RelatorioController@excel')->name('relatorios.excel');
+	Route::match(['get', 'post'], 'json',array('as'=>'json_relatorios','uses'=>'RelatorioController@relatorioJson'));
 });
 
 // Route::match(['get', 'post'], 'paciente/{id}', 'PacienteController@find')->name('paciente');
 Route::match(['get', 'post'], 'prontuario/{prontuario}', 'PacienteController@find')->name('prontuario');
-Route::match(['get', 'post'], 'paciente/{paciente}', 'PacienteController@find_by_cod_paciente')->name('paciente');
+Route::match(['get', 'post'], 'nome/{nome}', 'PacienteController@find_name')->name('paciente_nome');
+Route::match(['get', 'post'], 'pacientes/{prontuario}', 'PacienteController@getCodPaciente')->name('cod_paciente');
+
 Route::match(['get', 'post'], 'cid/{id}', 'PedidoController@cidFind')->name('find_cid');
 
 
 Route::get('json_cids',array('as'=>'json_cids','uses'=>'PedidoController@dataAjaxCid'));
 Route::get('json_pacientes', 'PedidoController@dataAjaxDadosPaciente')->name('json_pacientes');
 Route::get('json_procedimentos', 'PedidoController@dataAjaxProcedimentosCirurgicos')->name('json_procedimentos');
+Route::get('json_servidores',array('as'=>'json_servidores','uses'=>'PedidoController@dataAjaxServidores'));
+Route::get('json_situacoes',array('as'=>'json_situacoes','uses'=>'PedidoController@dataAjaxSituacoes'));
 
 
 

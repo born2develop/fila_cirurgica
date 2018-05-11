@@ -2,17 +2,20 @@ function ValidateForm()
 {
 	// id dos campos do tipo input type = text
 	var campos_text = ["nome_mae", "data_nascimento", "sus_id", "conc_hemacias", "plasma", 
-		"plaquetas", "crio_precipitado"];
+		"plaquetas", "crio_precipitado", 'sexo', 'telefone_residencial', 'telefone_recado'];
 
 	// id dos campos do tipo input type = radio
-	var campos_radio = ["operacao", "tipo_cirurgia", "sexo", "sintomatologia", "doenca_maligna", 
-		"operacao_porte", "anestesia", "exames_trans_op"];
+	var campos_radio = ["operacao", "tipo_cirurgia", "sintomatologia", "doenca_maligna", 
+		"operacao_porte", "exames_trans_op", 'encaminhamento'];
 
 	// id dos campos do tipo input type = checkbox
 	var campos_checkbox = ["doenca_associada1", "doenca_associada2", "doenca_associada3", "doenca_associada4"];
 
 	// id dos campos do tipo select
-	var campos_select = ["convenio", "prontuario", "especialidade"];
+	var campos_select = ["convenio", "prontuario", "especialidade", 'cirurgiao', 'convenio'];
+
+	// id dos campos select tipo NxN
+	var campos_nxn = ["cid", "proced_prop", "anestesia"];
 
 	var nomeCampo, cont;
 
@@ -51,29 +54,32 @@ function ValidateForm()
 			document.getElementById("lbl_" + nomeCampo).style.color = "#636b6f";
 	}
 
-
 	// Validando múltiplos telefones
-	var qtd_cid = $('.cid-input').length;
-	for(var i = 1; i<=qtd_cid; i++)
-	{
-		if(document.getElementById("cid"+i) != null) {
-			if(document.forms["inserir_fila"]["cid"+i].value.replace(/\s/g,'') == "" 
-				|| /\D/.test(document.forms["inserir_fila"]["cid"+i].value))
-			{
-				document.getElementById("lbl_cid").style.color = "red";
-				document.getElementById("cid"+i).focus();
-				isValid = false;
+	var loop_fields = 0;
+	var i=0, tmp=0;
+	for(cont=0; cont<campos_nxn.length; cont++){
+		tmp = '.'.concat(campos_nxn[cont]).concat('-input');
+		loop_fields = $(tmp);
+		for(i = 1; i<=loop_fields.length; i++) {
+			if(document.getElementById(campos_nxn[cont]+i) != null) {
+				tmp = campos_nxn[cont]+i;
+				if(document.forms["inserir_fila"][tmp].value.replace(/\s/g,'') == "" 
+					|| /\D/.test(document.forms["inserir_fila"][tmp].value)) {
+					document.getElementById("lbl_"+campos_nxn[cont]).style.color = "red";
+					document.getElementById(campos_nxn[i]+i).focus();
+					isValid = false;
+				}
+				else
+					document.getElementById("lbl_"+campos_nxn[cont]).style.color = "#636b6f";
 			}
-			else
-				document.getElementById("lbl_cid").style.color = "#636b6f";
-		}
-		else{
-				document.getElementById("lbl_cid").style.color = "red";
-				document.getElementById("cid"+i).focus();
-				isValid = false;
+			else {
+					document.getElementById("lbl_"+campos_nxn[cont]).style.color = "red";
+					document.getElementById(tmp).focus();
+					isValid = false;
+			}
 		}
 	}
-
+	/* FAZ PARTE DO CÓDIGO! COMENTADO DEVIDO A MANUTENÇÃO NO BACKEND DAS DOENÇAS ASSOCIADAS
 	var ok = false;
 	// Loop nos campos input checkbox
 	for(cont = 0; cont < campos_checkbox.length; cont++) {
@@ -95,9 +101,7 @@ function ValidateForm()
 		// Volta a cor para preto caso já preenchido
 		document.getElementById("lbl_doenca_associada").style.color = "#636b6f";
 	}
-			
-
-	
+	*/
 	// Valida o select
 	for(cont = 0; cont < campos_select.length; cont++)
 	{
@@ -116,6 +120,7 @@ function ValidateForm()
 		alert("Favor preencher corretamente todos os campos obrigatórios!");
 		return false;
 	}
+
 	alert("Pedido de cirurgia cadastrado!" +
 		"\nProntuário: " + document.forms["inserir_fila"]['prontuario'].value +
 		"\nPaciente: " + document.forms["inserir_fila"]['nome_paciente'].value);

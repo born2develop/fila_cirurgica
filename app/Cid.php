@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cid extends Model
 {
 	// protected $connection = 'connection-name'; // Set another connection
-    protected $table = 'vis_cid_aghu'; // Set table name (rather than "cids")
+    protected $table = 'vpc_cid_aghu'; // Set table name (rather than "cids")
 
     protected $primaryKey = '';
 
