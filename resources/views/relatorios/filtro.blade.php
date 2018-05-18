@@ -28,7 +28,8 @@ th, td {
     <div class="row" style="padding-top: 2%;">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default panel-body col-md-12">
-                <form class='form-horizontal' id='filtroForm' action=" {{ action('RelatorioController@excel') }}">
+                <form class='form-horizontal' method='POST' id='filtroForm' action="{{ action('RelatorioController@excel') }}">
+                    {{ csrf_field(); }}
                     <div class='form-group'>
                         <label for="data_inicio" class="col-md-2 control-label">Data inicial:</label>
                         <div class='col-md-2' style="">

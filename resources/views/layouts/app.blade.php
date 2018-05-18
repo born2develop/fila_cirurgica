@@ -46,18 +46,20 @@
                         @if (Auth::guest())
 
                         @else
-                            <li style="text-align: center;">
-                                <h5 style="color: #364177;"><b>{{ Auth::user()->name }} </b>
-                                </h5>
-                                <a href="{{ route('logout') }}" class="a" onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                <img src="{{ url::to('/') }}/img/icon_sair.png" class='icon'>
+                            <h5 style="color: #364177;"><b>{{ Auth::user()->name }}</b> </h5>
+                            <div>
+                                <a href="{{ route('logout') }}" class="a" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <img src="{{ url::to('/') }}/img/icon_sair.png" class='icon'>
                                 </a>
                                 
+                                <a href="{{ route('usuarios') }}" style="display: inline-block; margin-left: 10%;">
+                                   <span class='glyphicon glyphicon-user' aria-hidden='true' style="color: #364177; font-size: 150%;"></span>
+                                </a>
+
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
-                            </li>
+                            </div>
                         @endif
                     </ul>
                 </div>

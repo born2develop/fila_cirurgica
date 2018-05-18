@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Adldap\AdldapInterface;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -30,9 +32,31 @@ class UserController extends Controller
     public function index()
     {
         //$users = $this->ldap->search()->users()->limit(3)->get();
-        $users = $this->ldap->search()->where('memberof', '=', 'CN=HUB - Fila Cirurgica Gestao,OU=Grupos,OU=HUB,DC=Ebserh-HUB,DC=unb,DC=br')->limit(3)->get();
-        
-        return $users;
+        //$users = $this->ldap->search()->where('samaccountname', '=', '04994226199')->limit(3)->get();
+
+        $permissoes = collect(DB::table('formulario.opc_permission')->select('*')->get())
+            ->map(function($x){ return (array) $x; })->toArray();
+
+
+        return view('usuarios_acesso')->with([
+            'permissoes' => $permissoes
+        ]);
+    }
+
+    public function dataAjaxUsers(Request $request)
+    {
+        $input = $request->all();
+
+        /*$user = $this->ldap->search()
+        ->where('samaccountname', '=', $input['usuario'])->limit(1)->get();
+        */
+
+        $user = DB::table('formulario.users')
+            ->where('username', '=', $input['usuario'])
+            ->get(['name', 'username', 'cod_permission', 'id']);
+
+
+        return response()->json($user);
     }
     
     /**
@@ -40,10 +64,10 @@ class UserController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function show($id)
+    public function setPermission(Request $request)
     {
-        $user = $this->ldap->search()->findByGuid($id);
+        $permission = $request->all()->permission;
+
         
-        return view('users.show', compact('user'));
     }
 }

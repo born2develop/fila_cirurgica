@@ -28,6 +28,7 @@ $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('re
 
 // System routes
 Route::get('home', 'HomeController@index')->name('home');
+Route::get('users', 'UserController@index')->name('usuarios');
 
 Route::group(['prefix'=>'pedidos'], function() {
 	Route::get('cadastrar', 'PedidoController@create')->name('pedidos.create');
@@ -53,12 +54,13 @@ Route::match(['get', 'post'], 'pacientes/{prontuario}', 'PacienteController@getC
 
 Route::match(['get', 'post'], 'cid/{id}', 'PedidoController@cidFind')->name('find_cid');
 
-
+// Json para requisições assincronas com AJAX
 Route::get('json_cids',array('as'=>'json_cids','uses'=>'PedidoController@dataAjaxCid'));
 Route::get('json_pacientes', 'PedidoController@dataAjaxDadosPaciente')->name('json_pacientes');
 Route::get('json_procedimentos', 'PedidoController@dataAjaxProcedimentosCirurgicos')->name('json_procedimentos');
 Route::get('json_servidores',array('as'=>'json_servidores','uses'=>'PedidoController@dataAjaxServidores'));
 Route::get('json_situacoes',array('as'=>'json_situacoes','uses'=>'PedidoController@dataAjaxSituacoes'));
+Route::post('json_usuarios_ad', array('as'=>'json_usuarios_ad','uses'=>'UserController@dataAjaxUsers'));
 
 
 
